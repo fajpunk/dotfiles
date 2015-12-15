@@ -35,12 +35,16 @@ values."
      osx
      python
      sql
+     perspectives
+     (shell :variables
+            shell-default-term-shell "/usr/local/bin/zsh"
+            shell-default-shell 'multi-term
+            shell-default-position 'full)
      ;; (shell :variables
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)
      ;; spell-checking
-     (syntax-checking
-      :variables syntax-checking-enable-tooltips nil)
+     (syntax-checking :variables syntax-checking-enable-tooltips nil)
      ;; version-control
      )
    ;; List of additional packages that will be installed without being
