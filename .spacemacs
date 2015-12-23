@@ -25,6 +25,7 @@ values."
      ;; ----------------------------------------------------------------
      ;; auto-completion
      ;; better-defaults
+     dash
      auto-completion
      clojure
      emacs-lisp
@@ -65,12 +66,12 @@ This function is called at the very startup of Spacemacs initialization
 before layers configuration.
 You should not put any user code in there besides modifying the variable
 values."
-  (add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/"))
+  ;; (add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/"))
 
-  (add-to-list 'package-pinned-packages '(cider . "melpa-stable") t)
-  (add-to-list 'package-pinned-packages '(clj-refactor . "melpa-stable") t)
-  (add-to-list 'package-pinned-packages '(cljr-helm . "melpa-stable") t)
-  (add-to-list 'package-pinned-packages '(ac-cider . "melpa-stable") t)
+  ;; (add-to-list 'package-pinned-packages '(cider . "melpa-stable") t)
+  ;; (add-to-list 'package-pinned-packages '(clj-refactor . "melpa-stable") t)
+  ;; (add-to-list 'package-pinned-packages '(cljr-helm . "melpa-stable") t)
+  ;; (add-to-list 'package-pinned-packages '(ac-cider . "melpa-stable") t)
   ;; This setq-default sexp is an exhaustive list of all the supported
   ;; spacemacs settings.
   (setq-default
@@ -219,7 +220,28 @@ user code."
   (setq-default evil-escape-key-sequence "jk")
   (define-key evil-normal-state-map (kbd "j") 'evil-next-visual-line)
   (define-key evil-normal-state-map (kbd "k") 'evil-previous-visual-line)
-  (setq syntax-checking-enable-tooltips nil))
+  (setq syntax-checking-enable-tooltips nil)
+  (with-eval-after-load 'neotree
+    (define-key neotree-mode-map (kbd "o") 'neotree-enter)
+    (define-key neotree-mode-map (kbd "TAB") 'neotree-stretch-toggle)
+    (define-key neotree-mode-map (kbd "RET") 'neotree-enter)
+    (define-key neotree-mode-map (kbd "|") 'neotree-enter-vertical-split)
+    (define-key neotree-mode-map (kbd "-") 'neotree-enter-horizontal-split)
+    (define-key neotree-mode-map (kbd "?") 'evil-search-backward)
+    (define-key neotree-mode-map (kbd "c") 'neotree-create-node)
+    (define-key neotree-mode-map (kbd "d") 'neotree-delete-node)
+    (define-key neotree-mode-map (kbd "R") 'neotree-refresh)
+    (define-key neotree-mode-map (kbd "h") 'spacemacs/neotree-collapse-or-up)
+    (define-key neotree-mode-map (kbd "H") 'neotree-select-previous-sibling-node)
+    (define-key neotree-mode-map (kbd "J") 'neotree-select-down-node)
+    (define-key neotree-mode-map (kbd "K") 'neotree-select-up-node)
+    (define-key neotree-mode-map (kbd "l") 'spacemacs/neotree-expand-or-open)
+    (define-key neotree-mode-map (kbd "L") 'neotree-select-next-sibling-node)
+    (define-key neotree-mode-map (kbd "q") 'neotree-hide)
+    (define-key neotree-mode-map (kbd "r") 'neotree-rename-node)
+    (define-key neotree-mode-map (kbd "C-w") 'evil-window-map)
+    ;; (define-key neotree-mode-map (kbd "R") 'neotree-change-root)
+    (define-key neotree-mode-map (kbd "s") 'neotree-hidden-file-toggle)))
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
