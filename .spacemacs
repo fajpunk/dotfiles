@@ -36,7 +36,7 @@ values."
      osx
      python
      sql
-     perspectives
+     javascript
      (shell :variables
             shell-default-term-shell "/usr/local/bin/zsh"
             shell-default-shell 'multi-term
@@ -210,10 +210,17 @@ values."
   "Initialization function for user code.
 It is called immediately after `dotspacemacs/init'.  You are free to put any
 user code."
-  (setq cider-cljs-lein-repl "(do (use 'figwheel-sidecar.repl-api) (start-figwheel!) (cljs-repl))"))
+  (setq-default js2-basic-offset 2)
+  (setq-default js-indent-level 2)
+  (setq-default cider-cljs-lein-repl "(do (use 'figwheel-sidecar.repl-api) (start-figwheel!) (cljs-repl))"))
 
 (defun dotspacemacs/user-config ()
-  ;; (add-to-list 'gh-profile-alist '("ghe" :url "https://gh.leapfrogonline.com" :remote-regexp "^\\(?:git@gh.leapfrogonline.com\\.com:\\"))
+  (with-eval-after-load 'flycheck
+    (setq-default flycheck-disabled-checkers
+                  (append flycheck-disabled-checkers '(javascript-jshint))))
+  ;; (setq-default flycheck-disabled-checkers
+  ;;               (append flycheck-disabled-checkers
+  ;;                       '(javascript-jshint)))
   (defun cider-jack-in-figwheel ()
     (interactive)
     (cider-jack-in-clojurescript))
