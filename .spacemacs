@@ -2,6 +2,9 @@
 ;; This file is loaded by Spacemacs at startup.
 ;; It must be stored in your home directory.
 
+;; Had to do:
+;; tic -o ~/.terminfo /Applications/Emacs.app/Contents/Resources/etc/e/eterm-color.ti
+
 (defun dotspacemacs/layers ()
   "Configuration Layers declaration.
 You should not put any user code in this function besides modifying the variable
@@ -26,7 +29,12 @@ values."
      ;; auto-completion
      ;; better-defaults
      dash
-     auto-completion
+     (auto-completion :variables
+                      auto-completion-tab-key-behavior nil
+                      auto-completion-complete-with-key-sequence "df"
+                      auto-completion-return-key-behavior nil
+                      auto-completion-private-snippets-directory '("~/.emacs.d/private/mysnippets")
+                      )
      clojure
      emacs-lisp
      git
@@ -36,7 +44,10 @@ values."
      osx
      python
      sql
+     html
      javascript
+     ;; spacemacs-ivy
+     yaml
      (shell :variables
             shell-default-term-shell "/usr/local/bin/zsh"
             shell-default-shell 'multi-term
@@ -44,7 +55,7 @@ values."
      ;; (shell :variables
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)
-     ;; spell-checking
+     spell-checking
      (syntax-checking :variables syntax-checking-enable-tooltips nil)
      ;; version-control
      )
@@ -58,7 +69,8 @@ values."
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
    ;; are declared in a layer which is not a member of
    ;; the list `dotspacemacs-configuration-layers'. (default t)
-   dotspacemacs-delete-orphan-packages t))
+   dotspacemacs-delete-orphan-packages t
+   dotspacemacs-scratch-mode 'emacs-lisp-mode))
 
 (defun dotspacemacs/init ()
   "Initialization function.
@@ -188,7 +200,7 @@ values."
    dotspacemacs-smooth-scrolling t
    ;; If non-nil smartparens-strict-mode will be enabled in programming modes.
    ;; (default nil)
-   dotspacemacs-smartparens-strict-mode nil
+   dotspacemacs-smartparens-strict-mode 'all
    ;; Select a scope to highlight delimiters. Possible values are `any',
    ;; `current', `all' or `nil'. Default is `all' (highlight any scope and
    ;; emphasis the current one). (default 'all)
@@ -210,45 +222,40 @@ values."
   "Initialization function for user code.
 It is called immediately after `dotspacemacs/init'.  You are free to put any
 user code."
+  (setq-default fundamental-require-final-newline 'visit)
   (setq-default js2-basic-offset 2)
   (setq-default js-indent-level 2)
   (setq-default cider-cljs-lein-repl "(do (use 'figwheel-sidecar.repl-api) (start-figwheel!) (cljs-repl))"))
 
 (defun dotspacemacs/user-config ()
+  ;; (load "~/.emacs.d/private/secrets.el")
+  ;; (setq org-agenda-files '(~/Dropbox/org))
+  (setq mac-system-move-file-to-trash-use-finder nil)
+  (setq org-capture-templates
+        '(("i" "Interrupt" entry (file+headline "~/Dropbox/org/interruptions.org" "Interruptions")
+           "* INTERRUPTED %i")))
+
+
+  (define-key evil-insert-state-map (kbd "C-w") 'evil-window-map)
   (with-eval-after-load 'flycheck
     (setq-default flycheck-disabled-checkers
                   (append flycheck-disabled-checkers '(javascript-jshint))))
   ;; (setq-default flycheck-disabled-checkers
   ;;               (append flycheck-disabled-checkers
   ;;                       '(javascript-jshint)))
-  (defun cider-jack-in-figwheel ()
-    (interactive)
-    (cider-jack-in-clojurescript))
   (setq-default evil-escape-key-sequence "jk")
   (define-key evil-normal-state-map (kbd "j") 'evil-next-visual-line)
   (define-key evil-normal-state-map (kbd "k") 'evil-previous-visual-line)
   (setq syntax-checking-enable-tooltips nil)
+  (setq neo-theme 'nerd)
+  (global-set-key (kbd "TAB") 'hippie-expand)
+  (setq ivy-re-builders-alist
+        '((t . ivy--regex-fuzzy)))
+  (setq x-super-keysym 'meta)
+  (setq x-meta-keysym 'super)
   (with-eval-after-load 'neotree
-    (define-key neotree-mode-map (kbd "o") 'neotree-enter)
-    (define-key neotree-mode-map (kbd "TAB") 'neotree-stretch-toggle)
-    (define-key neotree-mode-map (kbd "RET") 'neotree-enter)
-    (define-key neotree-mode-map (kbd "|") 'neotree-enter-vertical-split)
-    (define-key neotree-mode-map (kbd "-") 'neotree-enter-horizontal-split)
-    (define-key neotree-mode-map (kbd "?") 'evil-search-backward)
-    (define-key neotree-mode-map (kbd "c") 'neotree-create-node)
-    (define-key neotree-mode-map (kbd "d") 'neotree-delete-node)
-    (define-key neotree-mode-map (kbd "R") 'neotree-refresh)
-    (define-key neotree-mode-map (kbd "h") 'spacemacs/neotree-collapse-or-up)
-    (define-key neotree-mode-map (kbd "H") 'neotree-select-previous-sibling-node)
-    (define-key neotree-mode-map (kbd "J") 'neotree-select-down-node)
-    (define-key neotree-mode-map (kbd "K") 'neotree-select-up-node)
-    (define-key neotree-mode-map (kbd "l") 'spacemacs/neotree-expand-or-open)
-    (define-key neotree-mode-map (kbd "L") 'neotree-select-next-sibling-node)
-    (define-key neotree-mode-map (kbd "q") 'neotree-hide)
-    (define-key neotree-mode-map (kbd "r") 'neotree-rename-node)
-    (define-key neotree-mode-map (kbd "C-w") 'evil-window-map)
-    ;; (define-key neotree-mode-map (kbd "R") 'neotree-change-root)
-    (define-key neotree-mode-map (kbd "s") 'neotree-hidden-file-toggle)))
+    (define-key neotree-mode-map (kbd "C-w") 'evil-window-map))
+  )
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
