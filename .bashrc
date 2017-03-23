@@ -2,7 +2,7 @@
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then
-	. /etc/bashrc
+  . /etc/bashrc
 fi
 
 # hub
@@ -20,6 +20,9 @@ export PATH=/home/dfuchs/.local/bin:$PATH
 # User specific aliases and functions
 alias emacs="/usr/local/bin/emacsclient -nw"
 alias EMACS="/usr/local/bin/emacs -nw --insecure"
+
+export VISUAL=nvim
+export EDITOR="$VISUAL"
 
 # Bloated git garbage
 # Set config variables first
@@ -65,3 +68,16 @@ eval "$(nodenv init -)"
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
+
+# Stack
+eval "$(stack --bash-completion-script stack)"
+
+# go
+export PATH=$PATH:/usr/local/go/bin
+export GOPATH=$HOME/src/go
+export PATH=$PATH:$(go env GOPATH)/bin
+
+# vim
+alias vim=nvim
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
