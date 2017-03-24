@@ -18,7 +18,7 @@ main = do
           }
       } `additionalKeys`
       [
-        ((mod1Mask .|. shiftMask, xK_z), spawn "xscreensaver-command -lock"),
+        ((mod1Mask .|. shiftMask, xK_z), spawn "slock"),
         ((0 , xF86XK_AudioLowerVolume), spawn "amixer set Master 10%-"),
         ((0 , xF86XK_AudioRaiseVolume), spawn "amixer set Master 10%+"),
         ((0 , xF86XK_AudioMute), spawn "amixer set Master toggle"),
