@@ -80,4 +80,8 @@ export PATH=$PATH:$(go env GOPATH)/bin
 # vim
 alias vim=nvim
 
+# fzf
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# rust
+export PATH="$HOME/.cargo/bin:$PATH"

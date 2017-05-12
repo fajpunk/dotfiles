@@ -30,6 +30,7 @@ Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'parsonsmatt/intero-neovim'
 Plug 'alx741/vim-hindent'
 Plug 'fatih/vim-go', {'do': ':GoInstallBinaries'}
+Plug 'rust-lang/rust.vim'
 
 " " Make sure you use single quotes
 "
@@ -85,6 +86,15 @@ if maparg('<C-L>', 'n') ==# ''
   nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
 endif
 
+" Use system clipboard for everything
+set clipboard+=unnamedplus
+
+" Default tab/space settings
+set expandtab
+set shiftwidth=2
+set softtabstop=2
+set tabstop=8
+
 set laststatus=2
 set ruler
 set wildmenu
@@ -112,7 +122,8 @@ nnoremap <leader>to :tabnext<CR>
 
 " Colors
 set background=dark
-colorscheme zenburn
+" colorscheme zenburn
+colorscheme base16-mocha
 
 " Airline
 let g:airline_powerline_fonts = 1
@@ -153,11 +164,11 @@ autocmd! BufWritePost * Neomake
 let g:terraform_align=1
 
 " sliumx
-map <localleader>s :SlimuxREPLSendLine<CR>
-vmap <localleader>s :SlimuxREPLSendSelection<CR>
-map <localleader>b :SlimuxREPLSendBuffer<CR>
-map <localleader>a :SlimuxShellLast<CR>
-map <localleader>k :SlimuxSendKeysLast<CR>
+map <leader>s :SlimuxREPLSendLine<CR>
+vmap <leader>s :SlimuxREPLSendSelection<CR>
+map <leader>b :SlimuxREPLSendBuffer<CR>
+map <leader>a :SlimuxShellLast<CR>
+map <leader>k :SlimuxSendKeysLast<CR>
 
 " hindent
 let g:hindent_on_save = 0
