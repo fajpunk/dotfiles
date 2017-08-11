@@ -19,17 +19,7 @@ nnoremap <buffer> <LocalLeader>g :InteroGoToDef<CR>
 nnoremap <buffer> <LocalLeader>u :InteroUses<CR>
 
 " Hindent
-nnoremap <buffer> <LocalLeader>h :Hindent<CR>:w<CR>
+" nnoremap <buffer> <LocalLeader>h :Hindent<CR>:w<CR>
 
 " Reload the file in Intero after saving
 " autocmd! BufWritePost *.hs InteroReload
-
-setlocal tabstop=8                   "A tab is 8 spaces
-setlocal expandtab                   "Always uses spaces instead of tabs
-setlocal softtabstop=2               "Insert 4 spaces when tab is pressed
-setlocal shiftwidth=2                "An indent is 4 spaces
-" setlocal shiftround                  "Round indent to nearest shiftwidth multiple
-
-" Hdevtools
-" nnoremap <buffer> <LocalLeader>t :HdevtoolsType<CR>
-" nnoremap <buffer> <LocalLeader>i :HdevtoolsInfo<CR>

@@ -3,7 +3,6 @@ set all&
 " Specify a directory for plugins (for Neovim: ~/.local/share/nvim/plugged)
 call plug#begin('~/.local/share/nvim/plugged')
 
-" Plug 'neovimhaskell/haskell-vim'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'altercation/vim-colors-solarized'
 " Plug 'bitc/vim-hdevtools'
@@ -19,16 +18,17 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'parsonsmatt/intero-neovim'
 " Plug 'zchee/deoplete-jedi'
 " Plug 'godlygeek/tabular'
-Plug 'davidhalter/jedi-vim'
+" Plug 'davidhalter/jedi-vim'
 " Plug 'ervandew/supertab'
 Plug 'epeli/slimux'
 Plug 'Vimjas/vim-python-pep8-indent'
-Plug 'parsonsmatt/intero-neovim'
-Plug 'alx741/vim-hindent'
+" Plug 'alx741/vim-hindent'
 Plug 'fatih/vim-go', {'do': ':GoInstallBinaries'}
 Plug 'rust-lang/rust.vim'
 
