@@ -1,3 +1,5 @@
+setlocal formatprg=stack\ exec\ hindent
+
 " Process management:
 nnoremap <buffer> <LocalLeader>so :InteroOpen<CR>
 nnoremap <buffer> <LocalLeader>sk :InteroKill<CR>
@@ -17,9 +19,3 @@ nnoremap <buffer> <LocalLeader>g :InteroGoToDef<CR>
 
 " Highlight uses of identifier:
 nnoremap <buffer> <LocalLeader>u :InteroUses<CR>
-
-" Hindent
-" nnoremap <buffer> <LocalLeader>h :Hindent<CR>:w<CR>
-
-" Reload the file in Intero after saving
-" autocmd! BufWritePost *.hs InteroReload

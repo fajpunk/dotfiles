@@ -7,13 +7,14 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'altercation/vim-colors-solarized'
 " Plug 'bitc/vim-hdevtools'
 Plug 'chriskempson/base16-vim'
-Plug 'eagletmt/neco-ghc'
+" Plug 'eagletmt/neco-ghc'
 Plug 'hashivim/vim-terraform'
 Plug 'jnurmine/Zenburn'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'morhetz/gruvbox'
-Plug 'neomake/neomake'
+Plug 'w0rp/ale'
+" Plug 'neomake/neomake'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-fugitive'
@@ -23,7 +24,8 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'parsonsmatt/intero-neovim'
 " Plug 'zchee/deoplete-jedi'
-" Plug 'godlygeek/tabular'
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
 " Plug 'davidhalter/jedi-vim'
 " Plug 'ervandew/supertab'
 Plug 'epeli/slimux'
@@ -31,7 +33,7 @@ Plug 'Vimjas/vim-python-pep8-indent'
 " Plug 'alx741/vim-hindent'
 Plug 'fatih/vim-go', {'do': ':GoInstallBinaries'}
 Plug 'rust-lang/rust.vim'
-
+Plug 'purescript-contrib/purescript-vim'
 " " Make sure you use single quotes
 "
 " " Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
@@ -158,7 +160,7 @@ nnoremap <leader>/ :Ag<CR>
 nnoremap <leader>bb :Buffers<CR>
 
 " Neomake
-autocmd! BufWritePost * Neomake
+" autocmd! BufWritePost * Neomake
 
 " Terraform
 let g:terraform_align=1
@@ -172,3 +174,6 @@ map <leader>k :SlimuxSendKeysLast<CR>
 
 " hindent
 let g:hindent_on_save = 0
+
+" vim-markdown
+let g:vim_markdown_folding_disabled = 1

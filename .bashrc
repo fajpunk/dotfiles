@@ -6,7 +6,7 @@ if [ -f /etc/bashrc ]; then
 fi
 
 # hub
-export GITHUB_HOST=gh.leapfrogonline.com
+export GITHUB_HOST=gh.leapfrogonline.net
 if [ -f ~/.local/completion/hub.bash_completion.sh ]; then
     . ~/.local/completion/hub.bash_completion.sh
 fi
@@ -16,10 +16,6 @@ eval "$(hub alias -s)"
 # export SYSTEMD_PAGER=
 export PATH=/home/dfuchs/bin:$PATH
 export PATH=/home/dfuchs/.local/bin:$PATH
-
-# User specific aliases and functions
-alias emacs="/usr/local/bin/emacsclient -nw"
-alias EMACS="/usr/local/bin/emacs -nw --insecure"
 
 export VISUAL=nvim
 export EDITOR="$VISUAL"
@@ -55,6 +51,7 @@ if [ -f /home/dfuchs/Downloads/google-cloud-sdk/completion.bash.inc ]; then
 fi
 
 export PATH=/usr/local/bin:$PATH
+export PATH=$HOME/.local/bin:$PATH
 
 # rbenv
 export PATH="$HOME/.rbenv/bin:$PATH"
