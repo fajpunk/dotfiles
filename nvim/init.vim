@@ -7,7 +7,7 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'altercation/vim-colors-solarized'
 " Plug 'bitc/vim-hdevtools'
 Plug 'chriskempson/base16-vim'
-" Plug 'eagletmt/neco-ghc'
+Plug 'eagletmt/neco-ghc'
 Plug 'hashivim/vim-terraform'
 Plug 'jnurmine/Zenburn'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -34,6 +34,9 @@ Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'fatih/vim-go', {'do': ':GoInstallBinaries'}
 Plug 'rust-lang/rust.vim'
 Plug 'purescript-contrib/purescript-vim'
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 " " Make sure you use single quotes
 "
 " " Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
@@ -118,9 +121,9 @@ nnoremap <leader>vv :source $MYVIMRC<CR>
 nnoremap <leader><Tab> 
 
 " Tabs
-nnoremap <leader>tn :tabnew<CR>
-nnoremap <leader>ti :tabprevious<CR>
-nnoremap <leader>to :tabnext<CR>
+nnoremap tn :tabnew<CR>
+nnoremap ti :tabprevious<CR>
+nnoremap to :tabnext<CR>
 
 " Colors
 set background=dark
@@ -131,23 +134,20 @@ colorscheme base16-mocha
 let g:airline_powerline_fonts = 1
 
 " Deoplete
-call deoplete#enable()
-let g:deoplete#disable_auto_complete = 1
-inoremap <silent><expr> <TAB>
-  \ pumvisible() ? "\<C-n>" :
-  \ <SID>check_back_space() ? "\<TAB>" :
-  \ deoplete#mappings#manual_complete()
-  function! s:check_back_space() abort "{{{
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~ '\s'
-  endfunction"}}}
+" call deoplete#enable()
+" let g:deoplete#disable_auto_complete = 1
+" inoremap <silent><expr> <TAB>
+"   \ pumvisible() ? "\<C-n>" :
+"   \ <SID>check_back_space() ? "\<TAB>" :
+"   \ deoplete#mappings#manual_complete()
+"   function! s:check_back_space() abort "{{{
+"   let col = col('.') - 1
+"   return !col || getline('.')[col - 1]  =~ '\s'
+"   endfunction"}}}
 
 " Nerdtree
 nnoremap <leader>pt :NERDTreeToggle<CR>
 let g:NERDTreeShowHidden = 1
-
-" Terraform
-" let g:terraform_align=1
 
 " NERDCommenter
 let g:NERDSpaceDelims = 1
@@ -177,3 +177,12 @@ let g:hindent_on_save = 0
 
 " vim-markdown
 let g:vim_markdown_folding_disabled = 1
+
+" ALE
+nnoremap <Leader>d :ALEDetail<CR>
+
+" Ultisnips
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsSnippetDirectories=["UltiSnips", "UltiSnipsPrivate"]
+let g:UltiSnipsSnippetsDir="~/.config/nvim/UltiSnipsPrivate"
+nnoremap <leader>ue :UltiSnipsEdit<CR>
