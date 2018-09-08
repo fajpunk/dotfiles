@@ -13,9 +13,11 @@ fi
 eval "$(hub alias -s)"
 
 # Uncomment the following line if you don't like systemctl's auto-paging feature:
-# export SYSTEMD_PAGER=
+export PAGER=less
 export PATH=/home/dfuchs/bin:$PATH
 export PATH=/home/dfuchs/.local/bin:$PATH
+export PAGER=less
+export SYSTEMD_PAGER=$PAGER
 
 export VISUAL=nvim
 export EDITOR="$VISUAL"
@@ -82,3 +84,14 @@ alias vim=nvim
 
 # rust
 export PATH="$HOME/.cargo/bin:$PATH"
+
+# added by travis gem
+[ -f /home/dfuchs/.travis/travis.sh ] && source /home/dfuchs/.travis/travis.sh
+
+# pgsql aliases
+alias stage_replica_prod="PGOPTIONS=--search_path=stage,ftp_accounts,hashi psql -h db8.production.ause2 production"
+alias stage_prod="PGOPTIONS=--search_path=stage,ftp_accounts,hashi psql -h sch1-db08.leapfrogonline.net production"
+alias stage_qa="PGOPTIONS=--search_path=stage,ftp_accounts,hashi psql -h sch1-db7.leapfrogonline.net qa"
+alias stage_dev="PGOPTIONS=--search_path=stage,ftp_accounts,hashi psql -h sch1-db7.leapfrogonline.net dev"
+
+complete -C /home/dfuchs/bin/vault vault

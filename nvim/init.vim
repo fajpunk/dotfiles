@@ -3,17 +3,17 @@ set all&
 " Specify a directory for plugins (for Neovim: ~/.local/share/nvim/plugged)
 call plug#begin('~/.local/share/nvim/plugged')
 
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'altercation/vim-colors-solarized'
 " Plug 'bitc/vim-hdevtools'
 Plug 'chriskempson/base16-vim'
-Plug 'eagletmt/neco-ghc'
+" Plug 'eagletmt/neco-ghc'
 Plug 'hashivim/vim-terraform'
 Plug 'jnurmine/Zenburn'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'morhetz/gruvbox'
-Plug 'w0rp/ale'
+" Plug 'w0rp/ale'
 " Plug 'neomake/neomake'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
@@ -22,7 +22,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'parsonsmatt/intero-neovim'
+" Plug 'parsonsmatt/intero-neovim'
 " Plug 'zchee/deoplete-jedi'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
@@ -37,6 +37,10 @@ Plug 'purescript-contrib/purescript-vim'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': './install.sh'
+    \ }
 " " Make sure you use single quotes
 "
 " " Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
@@ -173,7 +177,7 @@ map <leader>a :SlimuxShellLast<CR>
 map <leader>k :SlimuxSendKeysLast<CR>
 
 " hindent
-let g:hindent_on_save = 0
+" let g:hindent_on_save = 0
 
 " vim-markdown
 let g:vim_markdown_folding_disabled = 1
@@ -186,3 +190,14 @@ let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsSnippetDirectories=["UltiSnips", "UltiSnipsPrivate"]
 let g:UltiSnipsSnippetsDir="~/.config/nvim/UltiSnipsPrivate"
 nnoremap <leader>ue :UltiSnipsEdit<CR>
+
+" LauguageClient
+let g:LanguageClient_serverCommands = { 'haskell': ['hie-wrapper'] }
+nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+map <Leader>lk :call LanguageClient#textDocument_hover()<CR>
+map <Leader>lg :call LanguageClient#textDocument_definition()<CR>
+map <Leader>lr :call LanguageClient#textDocument_rename()<CR>
+map <Leader>lf :call LanguageClient#textDocument_formatting()<CR>
+map <Leader>lb :call LanguageClient#textDocument_references()<CR>
+map <Leader>la :call LanguageClient#textDocument_codeAction()<CR>
+map <Leader>ls :call LanguageClient#textDocument_documentSymbol()<CR>
